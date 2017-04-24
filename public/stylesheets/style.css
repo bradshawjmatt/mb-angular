@@ -51,7 +51,6 @@ h1 {
 	color: #00aed1;
 }
 
-
 table {
 	table-layout: fixed;
 	width: 800px;
@@ -79,4 +78,10 @@ pre {
 	padding: 0;
 	margin: 0;
 }
-
+input.ng-valid {
+    background-color: lightgreen;
+}
+input.ng-invalid {
+    background-color: #ff4949;
+		color:white;
+}
