@@ -20,27 +20,21 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-var userList = {};
+//temporary store for the data insteead of using a database in real life
+var userList = [];
 
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
 
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
-//var userList = {users: {name:'matt', email:'matt@matt.com'}};
 
-app.get('/about', function(req,res){
-  res.send('about');
-  console.log(appEnv);
-})
-
-app.post('/', function(req,res){
-  console.log(req.body);
+app.get('/userlist', function(req,res){
+  res.send(userList);
 })
 
 app.post('/newuser', function(req,res){
-  userList[req.body.email]={name:req.body.name};
-  console.log(userList) ;
+  userList.push({name:req.body.name, email:req.body.email});
 });
 
 // start server on the specified port and binding host
